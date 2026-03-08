@@ -1,0 +1,34 @@
+[global]
+    ### Appearance ###
+    width = 300
+    height = 110
+    offset = 30x30
+    origin = top-right
+    transparency = 0
+    padding = 16
+    horizontal_padding = 16
+    frame_width = 2
+    frame_color = "#444444"
+    separator_color = frame
+    font = Monospace 10
+
+    ### Text Alignment ###
+    alignment = left
+    vertical_alignment = center
+    show_indicators = no
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#bbbbbb"
+    timeout = 5
+
+[urgency_normal]
+    background = "#282828"
+    foreground = "#eeeeee"
+    timeout = 10
+
+[urgency_critical]
+    background = "#222222"
+    foreground = "#ff5555"
+    frame_color = "#ff5555"
+    timeout = 0

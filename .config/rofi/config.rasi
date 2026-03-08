@@ -1,0 +1,63 @@
+configuration {
+    modi: "drun";
+    show-icons: false;
+    display-drun: "»";
+    drun-display-format: "{name}";
+}
+
+@theme "/dev/null"
+
+* {
+    bg:      #121212;
+    fg:      #e0e0e0;
+    accent:  #424242; /* Medium Grey */
+    grey:    #757575;
+    
+    background-color: @bg;
+    text-color:       @fg;
+    font: "JetBrainsMono Nerd Font 10";
+}
+
+window {
+    width:      400px;
+    border:     1px;
+    border-color: @accent;
+    padding:    5px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 10px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    border: 0 0 1px 0;
+    border-color: @accent;
+    margin: 0 0 5px 0;
+}
+
+prompt {
+    padding: 0 10px 5px 0;
+    text-color: @grey;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @accent;
+}
+
+listview {
+    lines: 8;
+    fixed-height: false;
+}
+
+element {
+    padding: 5px;
+    margin: 2px 0;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @fg;
+}
