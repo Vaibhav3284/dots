@@ -27,6 +27,7 @@ bindsym $mod+shift+p exec "~/.config/rofi/powermenu.sh"
 exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id emacs --daemon
+exec --no-startup-id xfce4-power-manager
 
 exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 
