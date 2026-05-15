@@ -124,21 +124,6 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- ============================
-		-- TypeScript / TSX (NEW API)
-		-- ============================
-		vim.lsp.config("ts_ls", {
-			capabilities = capabilities,
-			filetypes = {
-				"typescript",
-				"typescriptreact",
-				"javascript",
-				"javascriptreact",
-			},
-		})
-
-		vim.lsp.enable("ts_ls")
-
-		-- ============================
 		-- Clang
 		-- ============================
 		vim.lsp.config("clangd", {

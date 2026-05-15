@@ -24,6 +24,9 @@ keymap.set("n", "<leader>n", "<cmd>tabnew<CR>", { desc = "New tab" })
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Keybind to Compile and Run C++
+vim.keymap.set('n', '<leader>r', ':w<CR>:!g++ -std=c++20 -Wall -Wextra -Wpedantic % -o %:r && ./%:r<CR>', { desc = 'Compile and Run C++' })
+
 -- file explorer
 keymap.set("n", "<C-n>", "<cmd>Ex<CR>", { desc = "Open file explorer" })
 

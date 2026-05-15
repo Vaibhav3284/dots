@@ -23,10 +23,9 @@ return {
 
 		local ensure_installed = {
 			"lua_ls",
-			"ruff";
-			"pyright",
 			"clangd",
-			"rust_analyzer",
+			"ruff";
+			
 		}
 
 		mason_lspconfig.setup({
