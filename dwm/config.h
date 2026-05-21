@@ -216,7 +216,7 @@ static char urgbgcolor[]                 = "#222222";
 static char urgbordercolor[]             = "#ff0000";
 static char urgfloatcolor[]              = "#db8fd9";
 
-static const char col_gray1[] = "#222222";
+static const char col_gray1[] = "#000000";
 static const char col_gray2[] = "#444444";
 static const char col_gray3[] = "#bbbbbb";
 static const char col_gray4[] = "#eeeeee";
@@ -356,10 +356,10 @@ static const int color_ptrs[][ColCount] = {
 
 static char *colors[][ColCount] = {
 	/*                       fg                bg                border                float */
-	[SchemeNorm] = {col_gray3, col_gray1, col_gray2},
-	[SchemeSel] = {col_gray4, col_gray1, col_cyan},
-	[SchemeTitleNorm]    = { col_gray3, col_gray1, col_gray2, titlenormfloatcolor },
-	[SchemeTitleSel]     = { col_gray4,  col_gray1,  col_gray2,  titleselfloatcolor }, 
+	[SchemeNorm] = {col_gray3, "#000000", col_gray2},
+	[SchemeSel] = {col_gray4, "#000000", col_cyan},
+	[SchemeTitleNorm]    = { col_gray3, "#000000", col_gray2, titlenormfloatcolor },
+	[SchemeTitleSel]     = { col_gray4,  "#000000",  col_gray2,  titleselfloatcolor }, 
 	[SchemeTagsNorm]     = { col_gray3,  col_gray1,  tagsnormbordercolor,  tagsnormfloatcolor },
 	[SchemeTagsSel]      = { col_gray4,   col_gray1,   tagsselbordercolor,   tagsselfloatcolor },
 	[SchemeHidNorm]      = { hidnormfgcolor,   hidnormbgcolor,   c000000,              c000000 },
@@ -1064,7 +1064,7 @@ static const Key keys[] = {
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
-	{MODKEY, XK_p, spawn, {.v = dmenucmd}},
+	{MODKEY, XK_d, spawn, {.v = dmenucmd}},
     	{MODKEY, XK_Return, spawn, {.v = termcmd}},
     	{0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd}},
     	{0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd}},
@@ -1129,7 +1129,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_k,          pushup,                 {0} },
 	#endif // PUSH_PATCH / PUSH_NO_MASTER_PATCH
 	{ MODKEY,                       XK_i,          incnmaster,             {.i = +1 } },
-	{ MODKEY,                       XK_d,          incnmaster,             {.i = -1 } },
+	{ MODKEY,                       XK_p,          incnmaster,             {.i = -1 } },
 	#if FLEXTILE_DELUXE_LAYOUT
 	{ MODKEY|ControlMask,           XK_i,          incnstack,              {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_u,          incnstack,              {.i = -1 } },
