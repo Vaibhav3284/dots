@@ -1,27 +1,71 @@
+# dwm - dynamic window manager
+# See LICENSE file for copyright and license details.
+
+include config.mk
+
 SRC = drw.c dwm.c util.c
+OBJ = ${SRC:.c=.o}
 
-INCLUDE = -I/usr/X11R6/include -I/usr/include/freetype2
+# FreeBSD users, prefix all ifdef, else and endif statements with a . for this to work (e.g. .ifdef)
 
-DEFS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION=\"6.2\" -DXINERAMA
+ifdef YAJLLIBS
+all: dwm dwm-msg
+else
+all: dwm
+endif
 
-LDFLAGS = -lX11 -lXinerama -lfontconfig -lXft
+.c.o:
+	${CC} -c ${CFLAGS} $<
 
-CFLAGS = -Ofast -march=native -funroll-loops -flto
+${OBJ}: config.h config.mk patches.h
 
-BIN = dwm
+config.h:
+	cp config.def.h $@
 
-CC = gcc
+patches.h:
+	cp patches.def.h $@
 
-$(BIN): $(SRC) *.h Makefile
-	$(CC) $(SRC) $(CFLAGS) $(INCLUDE) $(DEFS) $(LDFLAGS) -o $(BIN)
+dwm: ${OBJ}
+	${CC} -o $@ ${OBJ} ${LDFLAGS}
+
+ifdef YAJLLIBS
+dwm-msg:
+	${CC} -o $@ patch/ipc/dwm-msg.c ${LDFLAGS}
+endif
 
 clean:
-	rm -f $(BIN)
+	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
+	rm -f dwm-msg
 
-install: $(BIN)
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f dwm $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/$(BIN)
+dist: clean
+	mkdir -p dwm-${VERSION}
+	cp -R LICENSE Makefile README config.def.h config.mk\
+		dwm.1 drw.h util.h ${SRC} dwm.png transient.c dwm-${VERSION}
+	tar -cf dwm-${VERSION}.tar dwm-${VERSION}
+	gzip dwm-${VERSION}.tar
+	rm -rf dwm-${VERSION}
+
+install: all
+	mkdir -p ${DESTDIR}${PREFIX}/bin
+	cp -f dwm ${DESTDIR}${PREFIX}/bin
+ifdef YAJLLIBS
+	cp -f dwm-msg ${DESTDIR}${PREFIX}/bin
+endif
+	#cp -f patch/dwmc ${DESTDIR}${PREFIX}/bin
+	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
+ifdef YAJLLIBS
+	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm-msg
+endif
+	mkdir -p ${DESTDIR}${MANPREFIX}/man1
+	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	mkdir -p ${DESTDIR}${PREFIX}/share/xsessions
+	test -f ${DESTDIR}${PREFIX}/share/xsessions/dwm.desktop || cp -n dwm.desktop ${DESTDIR}${PREFIX}/share/xsessions
+	chmod 644 ${DESTDIR}${PREFIX}/share/xsessions/dwm.desktop
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
+	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
+		${DESTDIR}${MANPREFIX}/man1/dwm.1\
+		${DESTDIR}${PREFIX}/share/xsessions/dwm.desktop
+
+.PHONY: all clean dist install uninstall

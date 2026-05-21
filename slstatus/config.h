@@ -79,6 +79,6 @@ static const struct arg args[] = {
     /* Battery Percentage */
     {battery_perc, "Bat: %s%% | ", "BAT0"},
 
-    { datetime, " | %s",		"%d/%m/%Y %I:%M" },
+    {datetime, "%s", "%d/%m/%Y %I:%M"},
 
 };
