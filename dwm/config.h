@@ -1064,6 +1064,7 @@ static const Key keys[] = {
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
+	{ MODKEY | ShiftMask, XK_m, spawn, SHCMD("/home/pwnguin/dots/powermenu") },
 	{MODKEY, XK_d, spawn, {.v = dmenucmd}},
     	{MODKEY, XK_Return, spawn, {.v = termcmd}},
     	{0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd}},
