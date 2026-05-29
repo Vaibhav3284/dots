@@ -306,7 +306,7 @@
       "directory": "/home/bored/Pictures/Wallpapers",
       "monitorDirectories": [],
       "enableMultiMonitorDirectories": false,
-      "showHiddenFiles": false,
+      "showHiddenFiles": true,
       "viewMode": "single",
       "setWallpaperOnAllMonitors": true,
       "linkLightAndDarkWallpapers": true,
@@ -631,7 +631,7 @@
       "backlightDeviceMappings": []
     },
     "colorSchemes": {
-      "useWallpaperColors": false,
+      "useWallpaperColors": true,
       "predefinedScheme": "Kanagawa",
       "darkMode": true,
       "schedulingMode": "off",
@@ -699,7 +699,7 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "eDP-1": "/nix/store/cmp84a78k0ma1ilgp7g81ikr44rvwg95-noctalia-shell-4.7.6/share/noctalia-shell/Assets/Wallpaper/noctalia.png"
+      "eDP-1": "/home/bored/Pictures/Wallpapers/wallhaven-mlwz78_1920x1080.png"
     },
     "desktopWidgetsEditMode": false,
     "display": {

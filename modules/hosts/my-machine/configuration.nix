@@ -39,8 +39,8 @@
 
   services.xserver.enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
 
   services.xserver.xkb = {
     layout = "us";
@@ -104,7 +104,6 @@
     grim
     heroic
     git
-    stremio-linux-shell
     spotify
   
     libXcursor
@@ -121,6 +120,13 @@
     ];
   };
 
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPATS = "1";
+    STEAM_DISABLE_GPU_SANDBOX = "1";
+    LIBVA_DRIVER_NAME = "iHD";
+    MESA_VK_WSI_PRESENT_MODE = "mailbox";
+  };
+  
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
