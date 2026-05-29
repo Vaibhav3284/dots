@@ -80,17 +80,39 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-  neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  wget
-  grim
-  heroic
-  git
-  stremio-linux-shell
-  spotify
+    (pkgs.symlinkJoin {
+      name = "neovim";
+      buildInputs = [ pkgs.makeWrapper ];
+      paths = [ pkgs.neovim ];
+    
+      postBuild = ''
+        wrapProgram $out/bin/nvim \
+          --set XDG_CONFIG_HOME "/home/bored/dots"
+      '';
+    })
+    (pkgs.symlinkJoin {
+      name = "neovim";
+      buildInputs = [ pkgs.makeWrapper ];
+      paths = [ pkgs.kitty ];
+    
+      postBuild = ''
+        wrapProgram $out/bin/kitty \
+          --set XDG_CONFIG_HOME "/home/bored/dots"
+      '';
+    })
+    wget
+    grim
+    heroic
+    git
+    stremio-linux-shell
+    spotify
   
-  kitty
-  libXcursor
-  adwaita-icon-theme
+    libXcursor
+    adwaita-icon-theme
+    tree
+    fastfetch
+    clang
+    fzf
   ];
   
   fonts = {
