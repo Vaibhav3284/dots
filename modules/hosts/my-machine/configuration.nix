@@ -112,6 +112,9 @@
     fastfetch
     clang
     fzf
+    unzip
+    unrar
+    nodejs
   ];
   
   fonts = {
@@ -126,8 +129,15 @@
     LIBVA_DRIVER_NAME = "iHD";
     MESA_VK_WSI_PRESENT_MODE = "mailbox";
   };
-  
 
+  programs.neovim.package = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      telescope-nvim
+      telescope-fzf-native-nvim # NixOS will pre-compile the .so file safely
+    ];
+  };
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
   
