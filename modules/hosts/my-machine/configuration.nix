@@ -68,9 +68,6 @@
   };
 
   programs.firefox.enable = true;
-  programs.steam = {
-    enable = true;
-  };
 
   hardware.bluetooth = {
     enable = true;
@@ -80,26 +77,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    (pkgs.symlinkJoin {
-      name = "neovim";
-      buildInputs = [ pkgs.makeWrapper ];
-      paths = [ pkgs.neovim ];
-    
-      postBuild = ''
-        wrapProgram $out/bin/nvim \
-          --set XDG_CONFIG_HOME "/home/bored/dots"
-      '';
-    })
-    (pkgs.symlinkJoin {
-      name = "neovim";
-      buildInputs = [ pkgs.makeWrapper ];
-      paths = [ pkgs.kitty ];
-    
-      postBuild = ''
-        wrapProgram $out/bin/kitty \
-          --set XDG_CONFIG_HOME "/home/bored/dots"
-      '';
-    })
+    neovim
+    kitty
     wget
     grim
     heroic
@@ -115,6 +94,7 @@
     unzip
     unrar
     nodejs
+    gnumake
   ];
   
   fonts = {
@@ -123,11 +103,11 @@
     ];
   };
 
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPATS = "1";
-    STEAM_DISABLE_GPU_SANDBOX = "1";
-    LIBVA_DRIVER_NAME = "iHD";
-    MESA_VK_WSI_PRESENT_MODE = "mailbox";
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      extraArgs = "-system-composer"; # or "-cef-disable-gpu-compositing"
+    };
   };
 
   programs.neovim.package = {
@@ -136,6 +116,13 @@
       telescope-nvim
       telescope-fzf-native-nvim # NixOS will pre-compile the .so file safely
     ];
+  };
+
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -38,8 +38,7 @@
             repeat-delay = 250;
           };
           touchpad = {
-            natural-scroll = _: {}; 
-            tap = _: {}; 
+          	  off = _: {};
           };
           mouse = {
             accel-profile = "flat";
