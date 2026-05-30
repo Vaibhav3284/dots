@@ -124,6 +124,10 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore";
+  };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
