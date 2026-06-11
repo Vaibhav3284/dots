@@ -10,6 +10,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Kolkata";
@@ -22,7 +23,7 @@
     autoRepeatInterval = 35;
     windowManager.qtile.enable = true;
     displayManager.sessionCommands = ''
-      xwallpaper --zoom ~/nixos-dotfiles/walls/wall1.png
+      xwallpaper --zoom ~/nix/walls/wall1.png
     '';
     extraConfig = ''
       	Section "Monitor"
@@ -34,7 +35,7 @@
 
   services.picom.enable = true;
 
-  users.users.tony = {
+  users.users.bored = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     packages = with pkgs; [

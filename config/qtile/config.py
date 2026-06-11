@@ -144,7 +144,7 @@ layouts = [
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font Propo Bold",
     # font="Ubuntu Bold",
-    fontsize=14,
+    fontsize=12,
     padding=0,
     background=colors[0],
 )
@@ -167,11 +167,11 @@ screens = [
                 ),
                 widget.Prompt(
                     font = "Ubuntu Mono",
-                    fontsize=14,
+                    fontsize=12,
                     foreground = colors[1]
                 ),
                 widget.GroupBox(
-                    fontsize = 16,
+                    fontsize = 12,
                     margin_y = 5,
                     margin_x = 5,
                     padding_y = 0,
@@ -192,7 +192,7 @@ screens = [
                     font = "JetBrainsMono Nerd Font Propo Bold",
                     foreground = colors[9],
                     padding = 2,
-                    fontsize = 14
+                    fontsize = 12
                 ),
                 widget.CurrentLayout(
                     foreground = colors[1],
@@ -203,7 +203,7 @@ screens = [
                     font = "JetBrainsMono Nerd Font Propo Bold",
                     foreground = colors[9],
                     padding = 2,
-                    fontsize = 14
+                    fontsize = 12
                 ),
                 widget.WindowName(
                     foreground = colors[6],

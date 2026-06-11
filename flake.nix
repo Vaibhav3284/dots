@@ -19,7 +19,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.tony = import ./home.nix;
+            home-manager.users.bored = import ./home.nix;
             home-manager.backupFileExtension = "backup";
           }
         ];
