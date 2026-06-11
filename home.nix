@@ -11,11 +11,7 @@ let
   # Standard .config/directory
 
   configs = {
-    qtile = "qtile";
     nvim = "nvim";
-    rofi = "rofi";
-    alacritty = "alacritty";
-    picom = "picom";
   };
 in
 
@@ -54,9 +50,7 @@ in
     nixpkgs-fmt
     nodejs
     gcc
-    rofi
     xwallpaper
-
   ];
 
 
