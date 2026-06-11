@@ -1,0 +1,1 @@
+/home/bored/.emacs.d/gruvbox-dark.el
