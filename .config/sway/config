@@ -14,6 +14,7 @@ exec ~/Scripts/battery-monitor
 exec emacs --daemon
 # exec ~/Scripts/set-wallpaper random
 exec /usr/lib/polkit-kde-authentication-agent-1 
+input * { xkb_options "ctrl:nocaps,ctrl:swapcaps" }
 
 # ╭───────────────────────────────────────────────────────────────────────╮
 # │ VARIABLES                                                             │
