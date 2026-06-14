@@ -31,8 +31,7 @@ set $menu fuzzel
 # │ OUTPUT                                                                │
 # ╰───────────────────────────────────────────────────────────────────────╯
 # Run: swaymsg -t get_outputs
-output * bg /home/bored/Pictures/wallhaven-yqmlmx_1920x1080.png fill
-# output * bg /home/vyrx/Pictures/Wallpapers/others/a_sculpture_of_a_man_with_a_face_on_his_head.png fill
+output * bg /home/bored/dots/WhatsApp Image 2026-06-14 at 4.42.14 PM.jpeg stretch
 
 # ╭───────────────────────────────────────────────────────────────────────╮
 # │ INPUT & IDLE                                                          │
@@ -72,6 +71,13 @@ input type:touchpad {
 # ╰───────────────────────────────────────────────────────────────────────╯
 # Border colors: black-metal theme
 client.focused #718096 #404552 #f7fafc #718096 #718096
+
+# Idle management configuration
+exec swayidle -w \
+    timeout 300 'swaylock --effect-blur 7x5 --clock --indicator' \
+    timeout 330 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    timeout 600 'systemctl suspend' \
+    before-sleep 'swaylock --effect-blur 7x5 --clock --indicator'
 
 gaps inner 5
 smart_gaps on
