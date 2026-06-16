@@ -39,7 +39,6 @@
 
 (elpaca elpaca-use-package (elpaca-use-package-mode))
 
-(use-package evil :ensure t :demand t)
 (use-package spacious-padding :ensure t :demand t)
 (use-package doom-modeline :ensure t :demand t)
 
@@ -64,7 +63,6 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(evil-mode)
 (spacious-padding-mode)
 (doom-modeline-mode)
 
