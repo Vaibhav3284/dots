@@ -13,7 +13,7 @@ exec wl-paste --watch cliphist store
 exec ~/Scripts/battery-monitor
 exec emacs --daemon
 # exec ~/Scripts/set-wallpaper random
-exec /usr/lib/polkit-kde-authentication-agent-1
+exec /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1 
 
 # ╭───────────────────────────────────────────────────────────────────────╮
 # │ VARIABLES                                                             │
@@ -31,7 +31,7 @@ set $menu fuzzel
 # │ OUTPUT                                                                │
 # ╰───────────────────────────────────────────────────────────────────────╯
 # Run: swaymsg -t get_outputs
-output * bg /home/bored/dots/WhatsApp Image 2026-06-14 at 4.42.14 PM.jpeg stretch
+output * bg /home/bored/Pictures/wallpaper/WhatsApp Image 2026-06-14 at 4.42.14 PM.jpeg fill
 
 # ╭───────────────────────────────────────────────────────────────────────╮
 # │ INPUT & IDLE                                                          │
