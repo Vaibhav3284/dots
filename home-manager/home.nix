@@ -12,6 +12,19 @@
     # ./nvim.nix
   ];
 
+  # Automatically symlinks your folders in ~/dots/.config/ into ~/.config/
+  xdg.configFile = {
+    "sway".source = ../.config/sway;
+    "swayidle".source = ../.config/swayidle;
+    "swaylock".source = ../.config/swaylock;
+    "waybar".source = ../.config/waybar;
+    "mako".source = ../.config/mako;
+    "foot".source = ../.config/foot;
+    "fuzzel".source = ../.config/fuzzel;
+    "fish".source = ../.config/fish;
+    "starship.toml".source = ../.config/starship.toml;
+  };
+
   home = {
     username = "bored";
     homeDirectory = "/home/bored";
@@ -19,32 +32,50 @@
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      package = pkgs.bibata-cursors; # Or whatever cursor theme you prefer (e.g., pkgs.adwaita-icon-theme)
-      name = "Bibata-Modern-Classic"; # Run `ls` on the package output or use standard "Adwaita"
-      size = 24;                      # Matches the standard default GNOME size
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 24;
     };
 
-    packages = with pkgs.gnomeExtensions; [
-      blur-my-shell
-      appindicator
-      dash-to-dock
-      caffeine
-      clipboard-indicator
+    packages = with pkgs; [
+      # GNOME Extensions
+      gnomeExtensions.blur-my-shell
+      gnomeExtensions.appindicator
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.caffeine
+      gnomeExtensions.clipboard-indicator
+
+      # --- ADDED: Sway & Wayland toolchain applications ---
+      swayidle
+      swaylock
+      waybar
+      mako
+      foot
+      fuzzel
+      fish
+      starship
+      protonup-ng
+
+      # --- ADDED: RetroArch core packages ---
+      libretro.beetle-psx-hw
+      libretro.pcsx2
+      libretro.mupen64plus
+      libretro.ppsspp
+      libretro.snes9x
     ];
   };
 
   dconf = {
     enable = true;
     settings = {
-      # Moved color-scheme to its correct home
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
       };
 
       "org/gnome/desktop/background" = {
         picture-uri = "file://${./assets/wallpaper.png}";
-        picture-uri-dark = "file://${./assets/wallpaper.png}"; # For dark mode
-        picture-options = "scaled"; # Options: "none", "wall", "centered", "scaled", "stretched", "zoom", "spanned"
+        picture-uri-dark = "file://${./assets/wallpaper.png}";
+        picture-options = "scaled";
       };
 
       "org/gnome/desktop/screensaver" = {
@@ -52,7 +83,6 @@
         picture-options = "scaled";
       };
 
-      # Base GNOME Shell config (un-nested and using valid .extensionUuid tags)
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
@@ -64,7 +94,6 @@
         ];
       };
 
-      # Individual extension profiles (all separated at the top level)
       "org/gnome/shell/extensions/dash-to-dock" = {
         extend-height = false;
         custom-theme-shrink = true;
@@ -90,25 +119,26 @@
 
   programs.retroarch = {
     enable = true;
-    cores = {
-      beetle-psx-hw = { enable = true; };
-      pcsx2         = { enable = true; };
-      mupen64plus   = { enable = true; };
-      ppsspp        = { enable = true; };
-      snes9x        = { enable = true; };
+    # FIXED: Replaced invalid 'cores' block with proper directory paths
+    settings = {
+      libretro_directory = "~/.config/retroarch/cores";
+      libretro_info_path = "~/.config/retroarch/cores/info";
+      assets_directory = "~/.config/retroarch/assets";
+      content_database_path = "~/.config/retroarch/database/rdb";
+      cursor_directory = "~/.config/retroarch/database/cursors";
+      cheat_database_path = "~/.config/retroarch/cheats";
     };
   };
 
   programs.git = {
     enable = true;
-    userName = "Vaibhav3284";       # Replace with your actual name
-    userEmail = "vaibhavjatoliya1@gmail.com"; # Replace with your actual email
+    userName = "Vaibhav3284";
+    userEmail = "vaibhavjatoliya1@gmail.com";
 
-    # Optional but highly recommended extra configurations:
     extraConfig = {
       init.defaultBranch = "main";
-      core.editor = "emacs";       # Replace with nvim, code, etc. if preferred
-      pull.rebase = false;        # Standard merge behavior on pull
+      core.editor = "emacs";
+      pull.rebase = false;
     };
   };
 
