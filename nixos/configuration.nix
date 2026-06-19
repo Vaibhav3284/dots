@@ -21,6 +21,12 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+  services.blueman.enable = true;
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -140,6 +146,8 @@
     retroarch
     pcsx2
     protonup-ng
+    vesktop
+    gnome-tweaks
   ];
 
   programs.steam = {

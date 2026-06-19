@@ -1,6 +1,0 @@
-depends for debian -> sway  thunar nwg-look swaybg stow  grim slurp emacs gamemode gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin  brightnessctl fuzzel starship fish mako-notifier swaylock swaybg swayidle wl-clipboard waybar btop
-
-mkdir -p ~/.local/share/fonts
-wget https://djr.com -O input-fonts.zip
-unzip input-fonts.zip -d ~/.local/share/fonts/
-fc-cache -f -v
