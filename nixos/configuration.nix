@@ -148,6 +148,8 @@
     protonup-ng
     vesktop
     gnome-tweaks
+    simple64
+    ppsspp
   ];
 
   programs.steam = {
@@ -182,6 +184,14 @@
   };
 
   programs.fish.enable = true;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  nix.settings.auto-optimise-store = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "26.05";

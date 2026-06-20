@@ -25,6 +25,13 @@
     "starship.toml".source = ../.config/starship.toml;
   };
 
+  home.file = {
+    ".emacs.d" = {
+      source = ../.emacs.d;
+      recursive = true;
+    };
+  };
+
   home = {
     username = "bored";
     homeDirectory = "/home/bored";
@@ -32,20 +39,19 @@
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      name = "Adwaita";
       size = 24;
+      package = pkgs.adwaita-icon-theme; # Explicit package definition ensuring the cursor is found
     };
 
     packages = with pkgs; [
       # GNOME Extensions
-      gnomeExtensions.blur-my-shell
       gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.caffeine
       gnomeExtensions.clipboard-indicator
 
-      # --- ADDED: Sway & Wayland toolchain applications ---
+      # Sway & Wayland toolchain applications
       swayidle
       swaylock
       waybar
@@ -56,12 +62,7 @@
       starship
       protonup-ng
 
-      # --- ADDED: RetroArch core packages ---
-      libretro.beetle-psx-hw
-      libretro.pcsx2
-      libretro.mupen64plus
-      libretro.ppsspp
-      libretro.snes9x
+      emacs
     ];
   };
 
@@ -86,7 +87,6 @@
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
-          blur-my-shell.extensionUuid
           appindicator.extensionUuid
           dash-to-dock.extensionUuid
           caffeine.extensionUuid
@@ -119,14 +119,8 @@
 
   programs.retroarch = {
     enable = true;
-    # FIXED: Replaced invalid 'cores' block with proper directory paths
-    settings = {
-      libretro_directory = "~/.config/retroarch/cores";
-      libretro_info_path = "~/.config/retroarch/cores/info";
-      assets_directory = "~/.config/retroarch/assets";
-      content_database_path = "~/.config/retroarch/database/rdb";
-      cursor_directory = "~/.config/retroarch/database/cursors";
-      cheat_database_path = "~/.config/retroarch/cheats";
+    cores = {
+      beetle-psx-hw = { package = pkgs.libretro.beetle-psx-hw; };
     };
   };
 
@@ -134,7 +128,6 @@
     enable = true;
     userName = "Vaibhav3284";
     userEmail = "vaibhavjatoliya1@gmail.com";
-
     extraConfig = {
       init.defaultBranch = "main";
       core.editor = "emacs";
