@@ -69,3 +69,4 @@
 (doom-modeline-mode)
 
 (load  (expand-file-name "theme.el" user-emacs-directory))
+(put 'upcase-region 'disabled nil)

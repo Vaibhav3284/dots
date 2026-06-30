@@ -7,7 +7,6 @@
 # ╰───────────────────────────────────────────────────────────────────────╯
 exec waybar
 exec mako
-exec kdeconnect-indicator
 exec wl-clip-persist --clipboard regular
 exec wl-paste --watch cliphist store
 exec ~/Scripts/battery-monitor
@@ -31,7 +30,7 @@ set $menu fuzzel
 # │ OUTPUT                                                                │
 # ╰───────────────────────────────────────────────────────────────────────╯
 # Run: swaymsg -t get_outputs
-output * bg /home/bored/dots/home-manager/assets/wallpaper.png fill
+output * bg /home/bored/Pictures/wallpaper/WhatsApp Image 2026-06-14 at 4.42.14 PM.jpeg fill
 
 # ╭───────────────────────────────────────────────────────────────────────╮
 # │ INPUT & IDLE                                                          │
@@ -72,12 +71,13 @@ input type:touchpad {
 # Border colors: black-metal theme
 client.focused #718096 #404552 #f7fafc #718096 #718096
 
-# Idle management configuration
-exec swayidle -w \
-    timeout 300 'swaylock --effect-blur 7x5 --clock --indicator' \
+bindsym --locked XF86PowerOff exec sh -c 'swaylock --effect-blur 7x5 --clock --indicator; systemctl suspend'
+
+exec pkill swayidle; swayidle -w \
+    timeout 300 'pgrep -x swaylock || swaylock --effect-blur 7x5 --clock --indicator' \
     timeout 330 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     timeout 600 'systemctl suspend' \
-    before-sleep 'swaylock --effect-blur 7x5 --clock --indicator'
+    before-sleep 'pgrep -x swaylock || swaylock --effect-blur 7x5 --clock --indicator'
 
 gaps inner 5
 smart_gaps on
@@ -85,7 +85,7 @@ default_border pixel 2
 default_floating_border pixel 2
 
 # font pango:monospace 0.1
-font pango:DejaVu Sans Mono 9
+font DepartureMono Nerd Font 9
 titlebar_border_thickness 0
 titlebar_padding 3
 hide_edge_borders --i3 smart
@@ -119,7 +119,6 @@ for_window [app_id="spotify"] focus
 for_window [app_id="code"] focus
 
 # ─── Floating Windows ───
-for_window [app_id="mpv"] floating enable, resize set width 960 height 540, move position center
 for_window [class="feh"] floating enable, resize set width 960 height 540, move position center
 
 # ╭───────────────────────────────────────────────────────────────────────╮
@@ -142,13 +141,10 @@ bindsym $mod+m exec spotify-launcher
 bindsym Alt+slash exec foot -e btop
 # bindsym $mod+Shift+Return exec ghostty -e tmux a 
 
-bindsym --locked XF86PowerOff exec systemctl suspend | swaylock
-
 # ─── Utilities ───
 bindsym $mod+Alt+m exec ~/Scripts/dual-dac
 bindsym Alt+comma exec cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 bindsym Alt+period exec ~/Scripts/fuzzel-emoji
-bindsym Alt+P exec hyprpicker -a
 bindsym $mod+BackSpace exec ~/Scripts/toggle-terminal-transparency
 bindsym $mod+Shift+Space exec ~/Scripts/toggle-waybar
 bindsym $mod+Shift+M exec ~/Scripts/beats
