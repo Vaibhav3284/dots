@@ -1,0 +1,79 @@
+@import "default"
+
+* {
+    bg: #F5F5F5;          /* Fondo cremoso blanco */
+    fgd: #333333;        /* Texto gris oscuro */
+    accent: #D9C2A7;     /* Acento café suave */
+    selected: #C9B394;   /* Café más oscuro para selección */
+    border: #D9C2A7;     /* Borde café suave */
+
+    foreground: @fgd;
+    background: @bg;
+    active-background: @accent;
+    selected-background: @selected;
+    border-color: @border;
+
+    font: "JetBrainsMonoNL NFP Light 14";  /* Nueva fuente con tamaño 14 */
+}
+
+#window {
+    background-color: @bg;
+    border: 1;
+    border-radius: 2;
+    border-color: @border;
+    padding: 12px;  /* Aumentado ligeramente para equilibrar la fuente */
+    width: 40%;
+}
+
+#element {
+    padding: 6px 10px;  /* Aumentado para mayor espacio con fuente más grande */
+}
+
+#element.normal.normal {
+    background-color: @bg;
+    text-color: @fgd;
+}
+
+#element.normal.active {
+    background-color: @accent;
+    text-color: @fgd;
+}
+
+#element.selected.normal {
+    background-color: @selected;
+    text-color: @fgd;
+}
+
+#element.selected.active {
+    background-color: @selected;
+    text-color: @fgd;
+}
+
+#element.alternate.normal {
+    background-color: @bg;
+    text-color: @fgd;
+}
+
+#inputbar {
+    padding: 6px;  /* Aumentado para consistencia */
+    margin-bottom: 6px;
+    background-color: @bg;
+    border-radius: 2px;
+}
+
+#entry {
+    text-color: @fgd;
+}
+
+#prompt {
+    text-color: @fgd;
+}
+
+#textbox-prompt-colon {
+    text-color: @fgd;
+}
+
+#listview {
+    spacing: 2px;  /* Aumentado ligeramente para mejor separación */
+    padding: 4px 0;  /* Ajustado para equilibrar */
+}

@@ -1,0 +1,124 @@
+configuration {
+    modes: "window,drun,run";
+    font: "DejaVu Sans Mono 10";
+    drun-display-format: "{name}";
+    show-icons: true;
+    icon-theme: "Adwaita";
+}
+
+* {
+    bg: #282828;
+    bgt: #28282895;
+    t: transparent;
+    fg: #d4be98;
+
+    selected-bg: @fg;
+    selected-fg: @bg;
+
+    active: #a9b665;
+    urgent: #fb4934;
+}
+
+window {
+    fullscreen: false;
+    width: 450px;
+    padding: 30px;
+    transparency: "real";
+    background-color: @bgt;
+    border-color: @t;
+    border: 0px;
+    border-radius: 6px;
+}
+
+listview {
+    border: 0px;
+    padding: 15px 0px 0px;
+    lines: 8;
+    scrollbar: false;
+}
+
+textbox {
+    text-color: @fg;
+}
+
+entry {
+    placeholder: "Search...";
+    text-color: @fg;
+}
+
+element {
+    border: 0px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+element.normal.normal {
+    background-color: @t;
+    text-color: @fg;
+}
+
+element.normal.urgent {
+    background-color: @t;
+    text-color: @urgent;
+}
+
+element.normal.active {
+    background-color: @t;
+    text-color: @active;
+}
+
+element.selected.normal {
+    background-color: @selected-bg;
+    text-color: @selected-fg;
+}
+
+element.selected.urgent {
+    background-color: @selected-bg;
+    text-color: @urgent;
+}
+
+element.selected.active {
+    background-color: @selected-bg;
+    text-color: @selected-fg;
+}
+
+element.alternate.normal {
+    background-color: @t;
+    text-color: @fg;
+}
+
+element.alternate.urgent {
+    background-color: @t;
+    text-color: @urgent;
+}
+
+element.alternate.active {
+    background-color: @t;
+    text-color: @active;
+}
+
+inputbar {
+    spacing: 0px;
+    text-color: @fg;
+    padding: 2px;
+    children: [ prompt, textbox-prompt-sep, entry, case-indicator ];
+}
+
+case-indicator,
+entry,
+prompt,
+button {
+    spacing: 0px;
+    text-color: @fg;
+}
+
+button.selected {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+textbox-prompt-sep {
+    expand: false;
+    str: " : ";
+    text-color: @fg;
+}

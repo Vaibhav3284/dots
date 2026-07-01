@@ -1,0 +1,113 @@
+/**
+ * ROFI POWER MENU - ZEN MATTE FINAL
+ * Sin inputbar, solo mensaje y botones.
+ **/
+
+/***** CONFIGURACIÓN GLOBAL *****/
+configuration {
+    show-icons:                 false;
+    font:                       "Lilex Medium 12";
+}
+
+/***** COLORES MATTE *****/
+* {
+    background:                 #151515;
+    background-alt:             #1d2021;
+    foreground:                 #867970;
+    
+    selected:                   #a3ae6d; /* Verde Menta */
+    selected-fg:                #151515;
+    
+    /* Color del "bye bye." */
+    goodbye-color:              #cb8e9e; 
+}
+
+/***** VENTANA PRINCIPAL *****/
+window {
+    transparency:               "real";
+    location:                   center;
+    anchor:                     center;
+    fullscreen:                 false;
+    width:                      400px;
+    
+    background-color:           @background;
+    border:                     2px;
+    border-color:               @background-alt;
+    border-radius:              12px;
+    cursor:                     "default";
+}
+
+/***** CONTENEDOR *****/
+mainbox {
+    background-color:           transparent;
+    /* QUITAMOS inputbar, dejamos solo mensaje y lista */
+    children:                   [ "message", "listview" ];
+    spacing:                    20px;
+    padding:                    30px;
+}
+
+/***** MENSAJE (bye bye + uptime) *****/
+message {
+    enabled:                    true;
+    margin:                     0px;
+    padding:                    0px;
+    background-color:           transparent;
+    text-color:                 @goodbye-color;
+    border:                     0px;
+}
+
+textbox {
+    background-color:           transparent;
+    text-color:                 inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0.5; /* Centrado */
+    placeholder-color:          @foreground;
+    blink:                      true;
+    markup:                     true; /* IMPORTANTE para el HTML */
+    
+    /* Fuente base grande para el "bye bye" */
+    font:                       "Lilex Medium Italic 20"; 
+}
+
+/***** LISTA DE BOTONES *****/
+listview {
+    enabled:                    true;
+    columns:                    3;
+    lines:                      1;
+    cycle:                      true;
+    dynamic:                    true;
+    scrollbar:                  false;
+    layout:                     vertical;
+    reverse:                    false;
+    fixed-height:               true;
+    fixed-columns:              true;
+    
+    spacing:                    15px;
+    margin:                     10px 0px 0px 0px;
+    background-color:           transparent;
+    cursor:                     "default";
+}
+
+/***** ELEMENTOS (BOTONES) *****/
+element {
+    background-color:           @background-alt;
+    text-color:                 @foreground;
+    orientation:                vertical;
+    border-radius:              10px;
+    padding:                    25px 0px;
+    cursor:                     pointer;
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    font:                       "JetBrainsMono Nerd Font 32";
+    horizontal-align:           0.5;
+    vertical-align:             0.5;
+}
+
+element selected.normal {
+    background-color:           @selected;
+    text-color:                 @selected-fg;
+    border:                     0px;
+}
